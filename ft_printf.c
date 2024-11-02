@@ -3,6 +3,7 @@
 int ft_printf(const char *format, ...)
 {
 	int len;
+	int tmp;
 	va_list ap;
 
 	va_start(ap, format);
@@ -11,25 +12,26 @@ int ft_printf(const char *format, ...)
 	{
 		while(*format && *format != '%')
 		{
-			ft_putchar_fd(*format, 1)
-			len++;
+			len += ft_putchar_pf(*format);
 			format++;
 		}
 		if(*format == '%')
 		{
-			len += select_act(format);
 			format++;
-			while(*format && to_end(format))
+			tmp = select_act(ap, *format);
+			if(tmp != -1)
 				format++;
+			len += ft_abs(tmp);
 		}
 	}
 	va_end(ap);
 	return (len);
 }
 
+#include <stdio.h>
 int main(void)
 {
-	printf("<Mandatory>\nprintf:\nft_printf\n\n");
+	printf("<Mandatory>\nprintf:\nft_printf:\n\n");
 	printf("%%c: %c (\'c\')\n", 'c');
 	ft_printf("%%c: %c (\'c\')\n\n", 'c');
 	printf("%%s: %s (\"abc\")\n", "abc");
