@@ -1,7 +1,10 @@
 #include "ft_printf.h"
 
-int select_act(va_list ap, char c)
+int select_act(va_list ap, char *str, int count)
 {
+	char c;
+
+	c = str + count - 1;
 	if(c == 'c')
 		return (ft_putchar_pf(va_arg(ap, int)));
 	else if(c == 's')

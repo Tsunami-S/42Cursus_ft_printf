@@ -4,25 +4,26 @@ int ft_printf(const char *format, ...)
 {
 	int len;
 	int tmp;
+	int count;
 	va_list ap;
 
 	va_start(ap, format);
 	len = 0;
 	while(*format)
 	{
-		while(*format && *format != '%')
+		count = 1;
+		if(*format != '%')
+			tmp = ft_putchar_pf(*format);
+		else
 		{
-			len += ft_putchar_pf(*format);
-			format++;
+			count = search_char(format);
+			tmp = select_act(ap, format, count);
 		}
-		if(*format == '%')
-		{
+		if(tmp == -1)
+			return -1;
+		len += tmp;
+		while(count--)
 			format++;
-			tmp = select_act(ap, *format);
-			if(tmp != -1)
-				format++;
-			len += ft_abs(tmp);
-		}
 	}
 	va_end(ap);
 	return (len);

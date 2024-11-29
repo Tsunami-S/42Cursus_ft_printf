@@ -4,7 +4,7 @@ int main(void)
 {
 	int i;
 
-	printf("Mandatory\n");
+	printf("<Mandatory>\n");
 	printf("%%c: %c (\'c\')\n", 'c');
 	printf("%%s: %s (\"abc\")\n", "abc");
 	printf("%%p: %p ((void *)\"abc\")\n", (void *)"abc");
@@ -17,17 +17,17 @@ int main(void)
 	printf("%%%%: %%\n");
 	putchar('\n');
 
-	printf("Error cases\n");
-	printf("with wflags\n");
-	printf("%%yc: %yc (\'c\')\n");
-	i = printf("%y\n");
-	printf("%d\n", i);
-	i = printf("%s\n", "abcde");
-	printf("%d\n", i);
-	i = printf("%s\n", "");
-	printf("%d\n", i);
-	i = printf("%s\n", NULL);
-	printf("%d\n", i);
+	printf("<Error cases>\n");
+	//printf("with wflags\n");
+	printf("%%yc\n");
+	i = printf("%y");
+	printf(" : %d\n", i);
+	i = printf("%s", "abcde");
+	printf(" : %d\n", i);
+	i = printf("%s", "");
+	printf(" : %d\n", i);
+	i = printf("%s", NULL);
+	printf(" : %d\n", i);
 	printf("->\"error: unknown conversion type character ‘y’ in format\"\n");
 
 	printf("\nBonus\n");
