@@ -19,6 +19,9 @@ int main(void)
 
 	printf("<Error cases>\n");
 	//printf("with wflags\n");
+	printf("%#c\n", 'c');
+	printf("%#%\n\n");
+
 	printf("%%yc\n");
 	i = printf("%y");
 	printf(" : %d\n", i);
@@ -30,7 +33,7 @@ int main(void)
 	printf(" : %d\n", i);
 	printf("->\"error: unknown conversion type character ‘y’ in format\"\n");
 
-	printf("\nBonus\n");
+	printf("\n<Bonus: '-', '0', '#', ' ', '+'>\n");
 	printf("%%5d : %5d (42)\n", 42);
 	printf("%%-5d: %-5d (42)\n", 42);
 	printf("%%05d: %05d (42)\n", 42);

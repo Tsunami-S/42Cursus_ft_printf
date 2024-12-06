@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_pf.c                                     :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 14:02:58 by tssaito           #+#    #+#             */
-/*   Updated: 2024/11/02 21:50:40 by tssaito          ###   ########.fr       */
+/*   Created: 2024/12/05 22:06:16 by tssaito           #+#    #+#             */
+/*   Updated: 2024/12/05 22:06:17 by tssaito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putstr_pf(char *s)
+size_t	ft_strlen(const char *s)
 {
-	int len;
-	if(!s)
-		s = "(null)";
-	len = 0;
-	while (*s)
-		len += ft_putchar_pf(*s++);
-	return len;
-}
+	size_t	count;
 
+	count = 0;
+	while (s[count])
+		count++;
+	return (count);
+}

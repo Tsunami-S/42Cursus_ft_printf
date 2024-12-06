@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tssaito <tssaito@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 21:30:40 by tssaito           #+#    #+#             */
-/*   Updated: 2024/12/05 22:05:54 by tssaito          ###   ########.fr       */
+/*   Created: 2024/10/23 13:25:36 by tssaito           #+#    #+#             */
+/*   Updated: 2024/12/05 00:34:40 by tssaito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_abs(int n)
+int	ft_isdigit(int c)
 {
-	if (n < 0)
-		return (-n);
-	return (n);
+	return ('0' <= c && c <= '9');
 }
