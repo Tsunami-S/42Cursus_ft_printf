@@ -6,7 +6,7 @@
 /*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:42:14 by tssaito           #+#    #+#             */
-/*   Updated: 2024/12/06 17:42:16 by tssaito          ###   ########.fr       */
+/*   Updated: 2024/12/06 18:55:14 by tssaito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+
+# define OVERFLOW -42
 
 typedef struct s_format
 {

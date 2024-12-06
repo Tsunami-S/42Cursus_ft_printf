@@ -6,7 +6,7 @@
 /*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:43:04 by tssaito           #+#    #+#             */
-/*   Updated: 2024/12/06 17:43:05 by tssaito          ###   ########.fr       */
+/*   Updated: 2024/12/06 18:56:00 by tssaito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	select_act(va_list ap, t_format *s)
 {
-	if (s->width == -1 || s->prec == -1)
+	if (s->width == OVERFLOW || s->prec == OVERFLOW)
 		return (-1);
 	if (s->count == 1 || s->spec == '%')
 		return (pf_putchar('%', s));

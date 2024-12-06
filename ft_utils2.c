@@ -6,7 +6,7 @@
 /*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 13:49:08 by tssaito           #+#    #+#             */
-/*   Updated: 2024/12/06 17:45:17 by tssaito          ###   ########.fr       */
+/*   Updated: 2024/12/06 18:56:14 by tssaito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	ft_atoi(const char *nptr)
 	{
 		if ((ans > INT_MAX / 10 || (ans == INT_MAX / 10 && *nptr - '0' > INT_MAX
 					% 10)))
-			return (-1);
+			return (OVERFLOW);
 		ans = ans * 10 + *nptr - '0';
 		nptr++;
 	}

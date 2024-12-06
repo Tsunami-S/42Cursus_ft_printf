@@ -6,15 +6,15 @@
 /*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:41:54 by tssaito           #+#    #+#             */
-/*   Updated: 2024/12/06 17:41:55 by tssaito          ###   ########.fr       */
+/*   Updated: 2024/12/06 18:56:08 by tssaito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+static int	is_dot(char c);
 static int	is_spec(char c);
 static int	is_flag(char c, t_format *s);
-static int	is_dot(char c);
 
 void	flag_check(const char *str, t_format *s)
 {
