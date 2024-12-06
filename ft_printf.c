@@ -1,27 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/06 17:42:02 by tssaito           #+#    #+#             */
+/*   Updated: 2024/12/06 18:31:09 by tssaito          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 #include <stdio.h>
 
-int ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
-	int total_len;
-	int print_len;
-	va_list ap;
-	t_format spec_type;
+	int			total_len;
+	int			print_len;
+	va_list		ap;
+	t_format	spec_type;
 
 	va_start(ap, format);
 	total_len = 0;
-	while(*format)
+	while (*format)
 	{
 		init_t_format(&spec_type);
-		if(*format != '%')
+		if (*format != '%')
 			print_len = pf_putchar(*format, &spec_type);
 		else
-		{	
+		{
 			flag_check(format, &spec_type);
 			print_len = select_act(ap, &spec_type);
 		}
-		if(print_len == -1 || INT_MAX - total_len < print_len)
-			return -1;
+		if (print_len == -1 || INT_MAX - total_len < print_len)
+			return (-1);
 		format += spec_type.count;
 		total_len += print_len;
 	}
@@ -31,43 +43,48 @@ int ft_printf(const char *format, ...)
 
 //int main(void)
 //{
+//	printf("[%1s]\n[", "");
+//	ft_printf("%1s", "");
+//	printf("]\n");
+//	return 0;
+//}
 //	ft_printf("%%-1c  : [%-1c]\n", '0');
 //	ft_printf("%%-2c  : [%-2c]\n", 0);
 //	ft_printf("%%-3c  : [%-3c]\n", '0');
 //	char *str1 = "abcde";
 //	char *str2 = NULL;
-//	 printf("addr-------------------------\n");
-//	 printf("%%p        :[123456789012345678901234567890]\n");
-//	 ft_printf("%%p        :[%p]\n", str1);
-//	 ft_printf("%%20p      :[%20p]\n", str1);
-//	 ft_printf("%%#20p     :[%#20p]\n", str1);
-//	 ft_printf("%%020p     :[%020p]\n", str1);
-//	 ft_printf("%%-20p     :[%-20p]\n", str1);
-//	 ft_printf("%% 20p     :[% 20p]\n", str1);
-//	 ft_printf("%%+20p     :[%+20p]\n", str1);
-//	 ft_printf("%%0+20p    :[%0+20p]\n", str1);
-//	 ft_printf("%%-+20p    :[%-+20p]\n", str1);
-//	 ft_printf("%%0 20p    :[%0 20p]\n", str1);
-//	 ft_printf("%%- 20p    :[%- 20p]\n", str1);
-//	 ft_printf("%%#0+20p   :[%#0+20p]\n", str1);
-//	 ft_printf("%%#-+20p   :[%#-+20p]\n", str1);
-//	 ft_printf("%%#0 20p   :[%#0 20p]\n", str1);
-//	 ft_printf("%%#- 20p   :[%#- 20p]\n", str1);
-//	 ft_printf("%%20.15p   :[%20.15p]\n", str1);
-//	 ft_printf("%%20.15p   :[%20.15p]\n", str1);
-//	 ft_printf("%%#20.15p  :[%#20.15p]\n", str1);
-//	 ft_printf("%%020.15p  :[%020.15p]\n", str1);
-//	 ft_printf("%%-20.15p  :[%-20.15p]\n", str1);
-//	 ft_printf("%% 20.15p  :[% 20.15p]\n", str1);
-//	 ft_printf("%%+20.15p  :[%+20.15p]\n", str1);
-//	 ft_printf("%%0+20.15p :[%0+20.15p]\n", str1);
-//	 ft_printf("%%-+20.15p :[%-+20.15p]\n", str1);
-//	 ft_printf("%%0 20.15p :[%0 20.15p]\n", str1);
-//	 ft_printf("%%- 20.15p :[%- 20.15p]\n", str1);
-//	 ft_printf("%%#0+20.15p:[%#0+20.15p]\n", str1);
-//	 ft_printf("%%#-+20.15p:[%#-+20.15p]\n", str1);
-//	 ft_printf("%%#0 20.15p:[%#0 20.15p]\n", str1);
-//	 ft_printf("%%#- 20.15p:[%#- 20.15p]\n", str1);
+//		printf("addr-------------------------\n");
+//		printf("%%p        :[123456789012345678901234567890]\n");
+//		ft_printf("%%p        :[%p]\n", str1);
+//		ft_printf("%%20p      :[%20p]\n", str1);
+//		ft_printf("%%#20p     :[%#20p]\n", str1);
+//		ft_printf("%%020p     :[%020p]\n", str1);
+//		ft_printf("%%-20p     :[%-20p]\n", str1);
+//		ft_printf("%% 20p     :[% 20p]\n", str1);
+//		ft_printf("%%+20p     :[%+20p]\n", str1);
+//		ft_printf("%%0+20p    :[%0+20p]\n", str1);
+//		ft_printf("%%-+20p    :[%-+20p]\n", str1);
+//		ft_printf("%%0 20p    :[%0 20p]\n", str1);
+//		ft_printf("%%- 20p    :[%- 20p]\n", str1);
+//		ft_printf("%%#0+20p   :[%#0+20p]\n", str1);
+//		ft_printf("%%#-+20p   :[%#-+20p]\n", str1);
+//		ft_printf("%%#0 20p   :[%#0 20p]\n", str1);
+//		ft_printf("%%#- 20p   :[%#- 20p]\n", str1);
+//		ft_printf("%%20.15p   :[%20.15p]\n", str1);
+//		ft_printf("%%20.15p   :[%20.15p]\n", str1);
+//		ft_printf("%%#20.15p  :[%#20.15p]\n", str1);
+//		ft_printf("%%020.15p  :[%020.15p]\n", str1);
+//		ft_printf("%%-20.15p  :[%-20.15p]\n", str1);
+//		ft_printf("%% 20.15p  :[% 20.15p]\n", str1);
+//		ft_printf("%%+20.15p  :[%+20.15p]\n", str1);
+//		ft_printf("%%0+20.15p :[%0+20.15p]\n", str1);
+//		ft_printf("%%-+20.15p :[%-+20.15p]\n", str1);
+//		ft_printf("%%0 20.15p :[%0 20.15p]\n", str1);
+//		ft_printf("%%- 20.15p :[%- 20.15p]\n", str1);
+//		ft_printf("%%#0+20.15p:[%#0+20.15p]\n", str1);
+//		ft_printf("%%#-+20.15p:[%#-+20.15p]\n", str1);
+//		ft_printf("%%#0 20.15p:[%#0 20.15p]\n", str1);
+//		ft_printf("%%#- 20.15p:[%#- 20.15p]\n", str1);
 //	ft_printf("%%#x:[%#x]\n", 0);
 //	ft_printf("%%#x:[%#x]\n", LONG_MIN);
 //	ft_printf("%%#x:[%#x]\n", LONG_MAX);
@@ -441,5 +458,5 @@ int ft_printf(const char *format, ...)
 //	//ft_printf("%%X: %X (42)\n\n", 42);
 //	//printf("%%%%: %%\n");
 //	//ft_printf("%%%%: %%\n\n");
-//	return 0;
+//	return (0);
 //}

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   flag_check.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/06 17:41:54 by tssaito           #+#    #+#             */
+/*   Updated: 2024/12/06 17:41:55 by tssaito          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 static int	is_spec(char c);
@@ -6,20 +18,21 @@ static int	is_dot(char c);
 
 void	flag_check(const char *str, t_format *s)
 {
-	const char *start;
+	const char	*start;
+
 	start = str;
 	str++;
-	while(*str && is_flag(*str, s))
+	while (*str && is_flag(*str, s))
 		str++;
 	s->width = ft_atoi(str);
-	while(*str && ft_isdigit(*str))
+	while (*str && ft_isdigit(*str))
 		str++;
-	if(*str && is_dot(*str))
+	if (*str && is_dot(*str))
 	{
 		s->dot = 1;
 		str++;
 		s->prec = ft_atoi(str);
-		while(*str && ft_isdigit(*str))
+		while (*str && ft_isdigit(*str))
 			str++;
 	}
 	if (*str && is_spec(*str))
@@ -43,16 +56,16 @@ static int	is_flag(char c, t_format *s)
 		s->blanc = 1;
 	else if (c == '+')
 		s->plus = 1;
-	else 
-		return 0;
-	return 1;
+	else
+		return (0);
+	return (1);
 }
 
 static int	is_dot(char c)
 {
-	if(c == '.')
-		return 1;
-	return 0;
+	if (c == '.')
+		return (1);
+	return (0);
 }
 
 static int	is_spec(char c)
