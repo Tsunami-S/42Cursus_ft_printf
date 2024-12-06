@@ -11,6 +11,10 @@ int pf_putchar(char c, t_format *s)
 	str = make_block(s->width + 1);
 	if(!str)
 		return -1;
+	//if(s->hyp && c)
+	//	str[0] = c;
+	//else if(c)
+	//	str[s->width - 1] = c;
 	if(s->hyp)
 		str[0] = c;
 	else

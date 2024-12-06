@@ -6,6 +6,7 @@ int main(void)
 	 char *str2 = NULL;
 
 	 printf("addr-------------------------\n");
+	 printf("%%p        :[123456789012345678901234567890]\n", str1);
 	 printf("%%p        :[%p]\n", str1);
 	 printf("%%20p      :[%20p]\n", str1);
 	 printf("%%#20p     :[%#20p]\n", str1);

@@ -33,7 +33,7 @@ int			pf_putstr(char *str, t_format *s);
 int			pf_putnbr(int nbr, t_format *s);
 int	pf_putnbr_unsigned(unsigned int nbr, t_format *s);
 int pf_putnbr_hex(unsigned int nbr, char *base, t_format *s);
-int			pf_putaddr(void *addr, char *base, t_format *s);
+int			pf_putaddr(void *addr, t_format *s);
 
 /* utils */
 int	ft_abs(int n);

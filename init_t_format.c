@@ -11,6 +11,6 @@ void	init_t_format(t_format *s)
 	s->plus = 0;
 	s->width = 0;
 	s->dot = 0;
-	s->prec = -1;
+	s->prec = 0;
 	s->spec = 0;
 }
