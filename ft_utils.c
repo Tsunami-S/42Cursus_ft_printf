@@ -6,17 +6,17 @@
 /*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 20:32:49 by tssaito           #+#    #+#             */
-/*   Updated: 2024/12/06 17:42:21 by tssaito          ###   ########.fr       */
+/*   Updated: 2024/12/06 19:51:19 by tssaito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin_three(char const *s1, char const *s2, char const *s3);
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcat(char *dst, const char *src, size_t dsize);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dsize);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strjoin_three(char const *s1, char const *s2, char const *s3);
 
 size_t	ft_strlen(const char *s)
 {

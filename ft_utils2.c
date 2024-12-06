@@ -6,17 +6,17 @@
 /*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 13:49:08 by tssaito           #+#    #+#             */
-/*   Updated: 2024/12/06 18:56:14 by tssaito          ###   ########.fr       */
+/*   Updated: 2024/12/06 20:17:18 by tssaito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_isspace(char c);
-int			ft_abs(int n);
-int			ft_atoi(const char *nptr);
-int			ft_isdigit(int c);
-void		reverse_str(char *str);
+int		ft_abs(int n);
+int		ft_isdigit(int c);
+int		ft_atoi(const char *nptr);
+void	ft_strrev(char *str);
+void	ft_charset(char *block, char c, int size);
 
 int	ft_abs(int n)
 {
@@ -30,11 +30,17 @@ int	ft_isdigit(int c)
 	return ('0' <= c && c <= '9');
 }
 
-static int	ft_isspace(char c)
+void	ft_charset(char *block, char c, int size)
 {
-	if (c == ' ' || (9 <= c && c <= 13))
-		return (1);
-	return (0);
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		block[i] = c;
+		i++;
+	}
+	block[i] = '\0';
 }
 
 int	ft_atoi(const char *nptr)
@@ -42,7 +48,7 @@ int	ft_atoi(const char *nptr)
 	int	ans;
 
 	ans = 0;
-	while (ft_isspace(*nptr))
+	while (*nptr == ' ' || (9 <= *nptr && *nptr <= 13))
 		nptr++;
 	if (*nptr == '-')
 		return (0);
@@ -57,7 +63,7 @@ int	ft_atoi(const char *nptr)
 	return (ans);
 }
 
-void	reverse_str(char *str)
+void	ft_strrev(char *str)
 {
 	int		len;
 	int		i;

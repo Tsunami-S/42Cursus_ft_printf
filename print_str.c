@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_putstr.c                                        :+:      :+:    :+:   */
+/*   print_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:43:01 by tssaito           #+#    #+#             */
-/*   Updated: 2024/12/06 18:30:57 by tssaito          ###   ########.fr       */
+/*   Updated: 2024/12/06 20:16:25 by tssaito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static char	*make_blank_block(int blank_size);
 static char	*make_block(char *str, int str_len, char *blank, t_format *s);
 
-int	pf_putstr(char *str, t_format *s)
+int	print_str(char *str, t_format *s)
 {
 	int		str_len;
 	int		write_len;
@@ -50,27 +50,27 @@ static char	*make_blank_block(int blank_size)
 	blank_block = (char *)malloc(sizeof(char) * (blank_size + 1));
 	if (!blank_block)
 		return (NULL);
-	pf_charset(blank_block, ' ', blank_size);
+	ft_charset(blank_block, ' ', blank_size);
 	return (blank_block);
 }
 
 static char	*make_block(char *str, int str_len, char *blank, t_format *s)
 {
-	char	*print_block;
+	char	*write_block;
 
-	print_block = (char *)malloc(sizeof(char) * (s->width + 1));
-	if (!print_block)
+	write_block = (char *)malloc(sizeof(char) * (s->width + 1));
+	if (!write_block)
 		return (NULL);
-	print_block[0] = '\0';
+	write_block[0] = '\0';
 	if (s->hyp)
 	{
-		ft_strlcpy(print_block, str, str_len + 1);
-		ft_strlcat(print_block, blank, s->width + 1);
+		ft_strlcpy(write_block, str, str_len + 1);
+		ft_strlcat(write_block, blank, s->width + 1);
 	}
 	else
 	{
-		ft_strlcpy(print_block, blank, ft_strlen(blank) + 1);
-		ft_strlcat(print_block, str, s->width + 1);
+		ft_strlcpy(write_block, blank, ft_strlen(blank) + 1);
+		ft_strlcat(write_block, str, s->width + 1);
 	}
-	return (print_block);
+	return (write_block);
 }

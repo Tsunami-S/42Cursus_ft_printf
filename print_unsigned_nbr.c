@@ -1,89 +1,71 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_putnbr.c                                        :+:      :+:    :+:   */
+/*   print_unsigned_nbr.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/06 17:42:48 by tssaito           #+#    #+#             */
-/*   Updated: 2024/12/06 17:44:45 by tssaito          ###   ########.fr       */
+/*   Created: 2024/12/06 17:42:55 by tssaito           #+#    #+#             */
+/*   Updated: 2024/12/06 20:07:50 by tssaito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	sign_check(char sign[2], int nbr, t_format *s);
-static char	*pf_itoa(int n, t_format *s);
-static int	count_num(int n);
-static char	*make_block(char *sign, char *nbr, t_format *s);
+static char	*pf_itoa_unsigned(unsigned int n, t_format *s);
+static int	count_num(unsigned int n);
+static char	*make_block(char *nbr, t_format *s);
 
-int	pf_putnbr(int nbr, t_format *s)
+int	print_unsigned_nbr(unsigned int nbr, t_format *s)
 {
 	int		write_len;
-	char	sign[2];
-	char	*nbr_str;
-	char	*print_block;
+	char	*nbr_block;
+	char	*write_block;
 
-	sign_check(sign, nbr, s);
-	nbr_str = pf_itoa(nbr, s);
-	if (!nbr_str)
+	nbr_block = pf_itoa_unsigned(nbr, s);
+	if (!nbr_block)
 		return (-1);
-	print_block = make_block(sign, nbr_str, s);
-	free(nbr_str);
-	if (!print_block)
+	write_block = make_block(nbr_block, s);
+	free(nbr_block);
+	if (!write_block)
 		return (-1);
-	write_len = write(1, print_block, ft_strlen(print_block));
-	free(print_block);
+	write_len = write(1, write_block, ft_strlen(write_block));
+	free(write_block);
 	return (write_len);
 }
 
-static char	*make_block(char *sign, char *nbr, t_format *s)
+static char	*make_block(char *nbr, t_format *s)
 {
 	int		blank_size;
 	char	*block;
-	char	*print_block;
+	char	*write_block;
 
-	blank_size = s->width - ft_strlen(sign) - ft_strlen(nbr);
+	blank_size = s->width - ft_strlen(nbr);
 	if (blank_size <= 0)
-		return (ft_strjoin(sign, nbr));
+		return (ft_strjoin(nbr, ""));
 	block = (char *)malloc(sizeof(char) * (blank_size + 1));
 	if (!block)
 		return (NULL);
 	if (s->hyp || s->dot || !s->zero)
-		pf_charset(block, ' ', blank_size);
+		ft_charset(block, ' ', blank_size);
 	else
-		pf_charset(block, '0', blank_size);
+		ft_charset(block, '0', blank_size);
 	if (s->hyp)
-		print_block = ft_strjoin_three(sign, nbr, block);
-	else if (s->dot || !s->zero)
-		print_block = ft_strjoin_three(block, sign, nbr);
+		write_block = ft_strjoin(nbr, block);
 	else
-		print_block = ft_strjoin_three(sign, block, nbr);
+		write_block = ft_strjoin(block, nbr);
 	free(block);
-	if (!print_block)
+	if (!write_block)
 		return (NULL);
-	return (print_block);
+	return (write_block);
 }
 
-static void	sign_check(char sign[2], int nbr, t_format *s)
-{
-	sign[1] = '\0';
-	if (nbr < 0)
-		sign[0] = '-';
-	else if (s->plus)
-		sign[0] = '+';
-	else if (s->blanc)
-		sign[0] = ' ';
-	else
-		sign[0] = '\0';
-}
-
-static int	count_num(int n)
+static int	count_num(unsigned int n)
 {
 	int	count;
 
 	count = 0;
-	if (n == 0)
+	if (n <= 0)
 		count++;
 	while (n)
 	{
@@ -93,7 +75,7 @@ static int	count_num(int n)
 	return (count);
 }
 
-static char	*pf_itoa(int n, t_format *s)
+static char	*pf_itoa_unsigned(unsigned int n, t_format *s)
 {
 	char	*ans;
 	int		malloc_size;

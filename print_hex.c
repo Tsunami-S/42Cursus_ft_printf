@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_putnbr_hex.c                                    :+:      :+:    :+:   */
+/*   print_hex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:42:52 by tssaito           #+#    #+#             */
-/*   Updated: 2024/12/06 17:44:55 by tssaito          ###   ########.fr       */
+/*   Updated: 2024/12/06 20:07:36 by tssaito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static void	sharp_check(char sharp[3], unsigned int n, char *base, t_format *s);
 static void	convert_hex(char hex_str[11], unsigned int n, char *base,
 				t_format *s);
 static char	*zero_block(char *sharp, char *hex_str, t_format *s);
-static char	*make_block(char *sharp, char *hex, char *zero, t_format *s);
+static char	*make_print_block(char *sharp, char *hex, char *zero, t_format *s);
 
-int	pf_putnbr_hex(unsigned int nbr, char *base, t_format *s)
+int	print_hex(unsigned int nbr, char *base, t_format *s)
 {
 	int		write_len;
 	char	sharp[3];
@@ -31,7 +31,7 @@ int	pf_putnbr_hex(unsigned int nbr, char *base, t_format *s)
 	zero = zero_block(sharp, hex_str, s);
 	if (!zero)
 		return (-1);
-	print_block = make_block(sharp, hex_str, zero, s);
+	print_block = make_print_block(sharp, hex_str, zero, s);
 	free(zero);
 	if (!print_block)
 		return (-1);
@@ -40,7 +40,7 @@ int	pf_putnbr_hex(unsigned int nbr, char *base, t_format *s)
 	return (write_len);
 }
 
-static char	*make_block(char *sharp, char *hex, char *zero, t_format *s)
+static char	*make_print_block(char *sharp, char *hex, char *zero, t_format *s)
 {
 	int		blank_size;
 	char	*printable_block;
@@ -56,7 +56,7 @@ static char	*make_block(char *sharp, char *hex, char *zero, t_format *s)
 	blank_block = (char *)malloc(sizeof(char) * (blank_size + 1));
 	if (!blank_block)
 		return (free(printable_block), NULL);
-	pf_charset(blank_block, ' ', blank_size);
+	ft_charset(blank_block, ' ', blank_size);
 	if (s->hyp)
 		print_block = ft_strjoin(printable_block, blank_block);
 	else
@@ -107,7 +107,7 @@ static void	convert_hex(char hex_str[11], unsigned int n, char *base,
 		n /= 16;
 	}
 	hex_str[i] = '\0';
-	reverse_str(hex_str);
+	ft_strrev(hex_str);
 }
 
 static char	*zero_block(char *sharp, char *hex_str, t_format *s)

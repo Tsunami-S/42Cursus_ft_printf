@@ -8,7 +8,10 @@ RM = rm -rf
 
 WFLAG = -Wall -Wextra -Werror
 
-SRCS = flag_check.c ft_printf.c ft_utils.c ft_utils2.c pf_putaddr.c pf_putnbr.c pf_putnbr_unsigned.c init_t_format.c pf_charset.c pf_putchar.c pf_putnbr_hex.c pf_putstr.c select_act.c
+SRCS = ft_printf.c \
+	ft_utils.c ft_utils2.c \
+	print_addr.c print_nbr.c print_unsigned_nbr.c print_char.c print_hex.c print_str.c \
+	init_t_format.c  select_act.c flag_check.c
 
 OBJS = $(SRCS:.c=.o)
 

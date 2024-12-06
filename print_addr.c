@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_putaddr.c                                       :+:      :+:    :+:   */
+/*   print_addr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:42:41 by tssaito           #+#    #+#             */
-/*   Updated: 2024/12/06 18:11:36 by tssaito          ###   ########.fr       */
+/*   Updated: 2024/12/06 20:15:02 by tssaito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	convert_addr(char addr_str[23], void *addr);
+static int	convert_addr(char addr_block[23], void *addr);
 static char	*make_block(char *addr, int addr_len, t_format *s);
 
-int	pf_putaddr(void *addr, t_format *s)
+int	print_addr(void *addr, t_format *s)
 {
 	int		write_len;
 	int		addr_len;
-	char	addr_str[23];
+	char	addr_block[23];
 	char	*print_block;
 
 	if (!addr)
-		return (pf_putstr("(nil)", s));
-	addr_len = convert_addr(addr_str, addr);
+		return (print_str("(nil)", s));
+	addr_len = convert_addr(addr_block, addr);
 	if (s->width <= addr_len)
-		return (write(1, addr_str, addr_len));
-	print_block = make_block(addr_str, addr_len, s);
+		return (write(1, addr_block, addr_len));
+	print_block = make_block(addr_block, addr_len, s);
 	if (!print_block)
 		return (-1);
 	write_len = write(1, print_block, ft_strlen(print_block));
@@ -35,7 +35,7 @@ int	pf_putaddr(void *addr, t_format *s)
 	return (write_len);
 }
 
-static int	convert_addr(char addr_str[23], void *addr)
+static int	convert_addr(char addr_block[23], void *addr)
 {
 	int					i;
 	unsigned long long	hex_addr;
@@ -46,28 +46,28 @@ static int	convert_addr(char addr_str[23], void *addr)
 	i = 0;
 	while (hex_addr)
 	{
-		addr_str[i] = base[hex_addr % 16];
+		addr_block[i] = base[hex_addr % 16];
 		i++;
 		hex_addr /= 16;
 	}
-	addr_str[i++] = 'x';
-	addr_str[i++] = '0';
-	addr_str[i] = '\0';
-	reverse_str(addr_str);
-	return (ft_strlen(addr_str));
+	addr_block[i++] = 'x';
+	addr_block[i++] = '0';
+	addr_block[i] = '\0';
+	ft_strrev(addr_block);
+	return (ft_strlen(addr_block));
 }
 
 static char	*make_block(char *addr, int addr_len, t_format *s)
 {
-	int		blank_size;
+	int		blank_len;
 	char	*blank_block;
 	char	*print_block;
 
-	blank_size = s->width - addr_len;
-	blank_block = (char *)malloc(sizeof(char) * (blank_size + 1));
+	blank_len = s->width - addr_len;
+	blank_block = (char *)malloc(sizeof(char) * (blank_len + 1));
 	if (!blank_block)
 		return (NULL);
-	pf_charset(blank_block, ' ', blank_size);
+	ft_charset(blank_block, ' ', blank_len);
 	if (s->hyp)
 		print_block = ft_strjoin(addr, blank_block);
 	else
