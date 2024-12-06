@@ -6,7 +6,7 @@
 /*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:42:41 by tssaito           #+#    #+#             */
-/*   Updated: 2024/12/06 20:15:02 by tssaito          ###   ########.fr       */
+/*   Updated: 2024/12/06 21:53:27 by tssaito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	print_addr(void *addr, t_format *s)
 		return (write(1, addr_block, addr_len));
 	print_block = make_block(addr_block, addr_len, s);
 	if (!print_block)
-		return (-1);
+		return (PRINTF_ERROR);
 	write_len = write(1, print_block, ft_strlen(print_block));
 	free(print_block);
 	return (write_len);

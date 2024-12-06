@@ -6,7 +6,7 @@
 /*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:42:45 by tssaito           #+#    #+#             */
-/*   Updated: 2024/12/06 20:16:17 by tssaito          ###   ########.fr       */
+/*   Updated: 2024/12/06 21:53:17 by tssaito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	print_char(char c, t_format *s)
 		return (write(1, &c, 1));
 	print_block = make_print_block(s->width + 1);
 	if (!print_block)
-		return (-1);
+		return (PRINTF_ERROR);
 	if (s->hyp)
 		print_block[0] = c;
 	else

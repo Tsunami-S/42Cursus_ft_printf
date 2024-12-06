@@ -6,7 +6,7 @@
 /*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:42:55 by tssaito           #+#    #+#             */
-/*   Updated: 2024/12/06 20:07:50 by tssaito          ###   ########.fr       */
+/*   Updated: 2024/12/06 21:51:35 by tssaito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int	print_unsigned_nbr(unsigned int nbr, t_format *s)
 
 	nbr_block = pf_itoa_unsigned(nbr, s);
 	if (!nbr_block)
-		return (-1);
+		return (PRINTF_ERROR);
 	write_block = make_block(nbr_block, s);
 	free(nbr_block);
 	if (!write_block)
-		return (-1);
+		return (PRINTF_ERROR);
 	write_len = write(1, write_block, ft_strlen(write_block));
 	free(write_block);
 	return (write_len);
@@ -86,7 +86,7 @@ static char	*pf_itoa_unsigned(unsigned int n, t_format *s)
 	ans = (char *)malloc(sizeof(char) * (malloc_size + 1));
 	if (!ans)
 		return (NULL);
-	if (!n && s->dot && (s->prec == -1 || !s->prec))
+	if (!n && s->dot && !s->prec)
 	{
 		ans[0] = '\0';
 		return (ans);

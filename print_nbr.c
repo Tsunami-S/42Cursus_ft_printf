@@ -6,7 +6,7 @@
 /*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:42:48 by tssaito           #+#    #+#             */
-/*   Updated: 2024/12/06 20:16:23 by tssaito          ###   ########.fr       */
+/*   Updated: 2024/12/06 21:52:32 by tssaito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int	print_nbr(int nbr, t_format *s)
 	sign_check(sign, nbr, s);
 	nbr_block = pf_itoa(nbr, s);
 	if (!nbr_block)
-		return (-1);
+		return (PRINTF_ERROR);
 	print_block = make_block(sign, nbr_block, s);
 	free(nbr_block);
 	if (!print_block)
-		return (-1);
+		return (PRINTF_ERROR);
 	write_len = write(1, print_block, ft_strlen(print_block));
 	free(print_block);
 	return (write_len);
@@ -104,7 +104,7 @@ static char	*pf_itoa(int n, t_format *s)
 	ans = (char *)malloc(sizeof(char) * (malloc_size + 1));
 	if (!ans)
 		return (NULL);
-	if (!n && s->dot && (s->prec == -1 || !s->prec))
+	if (!n && s->dot && !s->prec)
 	{
 		ans[0] = '\0';
 		return (ans);

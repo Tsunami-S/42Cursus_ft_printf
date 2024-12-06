@@ -6,7 +6,7 @@
 /*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:42:14 by tssaito           #+#    #+#             */
-/*   Updated: 2024/12/06 20:08:23 by tssaito          ###   ########.fr       */
+/*   Updated: 2024/12/06 21:50:13 by tssaito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <unistd.h>
 
 # define OVERFLOW -42
+# define PRINTF_ERROR -1
 
 typedef struct s_format
 {

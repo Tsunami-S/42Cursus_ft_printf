@@ -6,7 +6,7 @@
 /*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:42:02 by tssaito           #+#    #+#             */
-/*   Updated: 2024/12/06 20:05:13 by tssaito          ###   ########.fr       */
+/*   Updated: 2024/12/06 21:54:12 by tssaito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	ft_printf(const char *format, ...)
 			flag_check(format, &spec_type);
 			print_len = select_act(ap, &spec_type);
 		}
-		if (print_len == -1 || INT_MAX - total_len < print_len)
-			return (-1);
+		if (print_len == PRINTF_ERROR || INT_MAX - total_len < print_len)
+			return (PRINTF_ERROR);
 		format += spec_type.count;
 		total_len += print_len;
 	}

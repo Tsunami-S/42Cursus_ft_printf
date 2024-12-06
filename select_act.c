@@ -6,7 +6,7 @@
 /*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:43:04 by tssaito           #+#    #+#             */
-/*   Updated: 2024/12/06 20:08:03 by tssaito          ###   ########.fr       */
+/*   Updated: 2024/12/06 21:50:50 by tssaito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	select_act(va_list ap, t_format *s)
 {
 	if (s->width == OVERFLOW || s->prec == OVERFLOW)
-		return (-1);
+		return (PRINTF_ERROR);
 	if (s->count == 1 || s->spec == '%')
 		return (print_char('%', s));
 	else if (s->spec == 'c')
@@ -32,5 +32,5 @@ int	select_act(va_list ap, t_format *s)
 		return (print_hex(va_arg(ap, unsigned int), "0123456789abcdef", s));
 	else if (s->spec == 'X')
 		return (print_hex(va_arg(ap, unsigned int), "0123456789ABCDEF", s));
-	return (-2);
+	return (PRINTF_ERROR);
 }

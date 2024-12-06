@@ -6,7 +6,7 @@
 /*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:42:52 by tssaito           #+#    #+#             */
-/*   Updated: 2024/12/06 20:07:36 by tssaito          ###   ########.fr       */
+/*   Updated: 2024/12/06 21:53:03 by tssaito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int	print_hex(unsigned int nbr, char *base, t_format *s)
 	convert_hex(hex_str, nbr, base, s);
 	zero = zero_block(sharp, hex_str, s);
 	if (!zero)
-		return (-1);
+		return (PRINTF_ERROR);
 	print_block = make_print_block(sharp, hex_str, zero, s);
 	free(zero);
 	if (!print_block)
-		return (-1);
+		return (PRINTF_ERROR);
 	write_len = write(1, print_block, ft_strlen(print_block));
 	free(print_block);
 	return (write_len);
@@ -89,7 +89,7 @@ static void	convert_hex(char hex_str[11], unsigned int n, char *base,
 	int	i;
 
 	i = 0;
-	if (!n && s->dot && (!s->prec || s->prec == -1))
+	if (!n && s->dot && !s->prec)
 	{
 		hex_str[0] = '\0';
 		return ;

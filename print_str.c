@@ -6,7 +6,7 @@
 /*   By: tssaito <tssaito@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:43:01 by tssaito           #+#    #+#             */
-/*   Updated: 2024/12/06 20:16:25 by tssaito          ###   ########.fr       */
+/*   Updated: 2024/12/06 21:51:53 by tssaito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ int	print_str(char *str, t_format *s)
 		return (write(1, str, str_len));
 	blank_block = make_blank_block(s->width - str_len);
 	if (!blank_block)
-		return (-1);
+		return (PRINTF_ERROR);
 	write_block = make_block(str, str_len, blank_block, s);
 	free(blank_block);
 	if (!write_block)
-		return (-1);
+		return (PRINTF_ERROR);
 	write_len = write(1, write_block, s->width);
 	free(write_block);
 	return (write_len);
