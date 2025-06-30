@@ -1,6 +1,4 @@
-*.o
-*.a
-*.out
-*.exe
-.*
 !.gitignore
+.cache
+compile_commands.json
+vgcore.*
